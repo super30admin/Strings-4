@@ -10,13 +10,13 @@
  * The problem asks to convert a string to integer in given string Java 
  * 
  * The solution to the problem is listed below:
- * 	1.Remove as many as white space characters until we found non white space character
- * 	2. Let "start" be storing the index of first non space white character
- *  3.let "first" be first non white space character .Check first is letter or digit.
+ * 	1.Remove as many as white space characters until we found non whitespace character
+ * 	2. Let "start" be storing the index of first non whitespace white character
+ *  3.let "first" be variable storing first non whitespace character .Check "first" is letter or digit.
  *   a.) If "first" is letter and is not + or - operator then return 0
  *   b.) If "first" is letter and is + or -.Let "sign" be storing the sign of number.
  *   c.) Now start traversing from "start"
- *   	i.)Let "result" be storing the converted number
+ *   	i.)Let "result" be variable storing the converted number
  *   	ii.)Let "char" be character at index "i"
  *   	iii.) Check the "char" is digit or letter.If "char" is letter ,then convert "char" to "int" and multiply by "sig"n and return
  *   the converted value
