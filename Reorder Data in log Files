@@ -1,0 +1,43 @@
+// time complexity: [MNlogN : M: max length of log; N: number of logs]
+// space complexity: [MN] : output space
+class Solution {
+    public String[] reorderLogFiles(String[] logs) {
+        List<String> letterLog = new ArrayList<>();
+        List<String> digitLog = new ArrayList<>();
+        seperateLog(logs, letterLog, digitLog);
+        sortLetterlog(letterLog);
+        return generateOutput(letterLog, digitLog);
+    }
+    
+    public void seperateLog(String[] logs, List<String> letterLog, List<String> digitLog){
+        for(String log : logs){ 
+            String[] str = log.split("\\s+");
+            if(Character.isDigit(str[1].charAt(0)))
+                digitLog.add(log);
+            else
+                letterLog.add(log);
+        }
+    }
+    
+    public void sortLetterlog(List<String> letterLog){
+        Collections.sort(letterLog, (o1, o2) -> { 
+            String s1 = o1.substring(o1.indexOf(" ")+1);
+            String s2 = o2.substring(o2.indexOf(" ")+1);
+            return (s1.equals(s2)) ? o1.compareTo(o2) : s1.compareTo(s2); 
+        });
+    }
+    
+    public String[] generateOutput(List<String> letterlog, List<String> digitlog){
+        String[] result = new String[letterlog.size() + digitlog.size()];
+        int index = 0;
+        for(String log : letterlog){
+            result[index++] = log;
+        }
+        
+        for(String log : digitlog){
+            result[index++] = log;
+        }
+        
+        return result;
+    }
+}                                                           
