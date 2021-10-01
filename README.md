@@ -1,49 +1,97 @@
 # Strings-4
 
-## Problem1: Find object in a grid
+## Problem1: Atoi (https://leetcode.com/problems/string-to-integer-atoi/)
 
-Given a char grid (o represents an empty cell and x represents a target object) and an API getResponse which would give you a response w.r.t. to your previous position. Write a program to find the object. You can move to any position.
+//Time Complexity = O(N)
+// Space Complexity = O(1)
 
-enum Response {
-	HOTTER,  // Moving closer to target
-	COLDER,  // Moving farther from target
-	SAME,    // Same distance from the target as your previous guess
-	EXACT;   // Reached destination
+class Solution {
+public int myAtoi(String s) {
+if(s == null || s.length() == 0) {
+return 0;
 }
 
-// Throws an error if 'row' or 'col' is out of bounds
-public Response getResponse(int row, int col) {
-	// black box
+        s = s.trim();
+
+        if(s.length() == 0) {
+            return 0;
+        }
+
+        char sign = '+';
+        char first = s.charAt(0);
+        if(first == '-') {
+            sign = '-';
+        }
+        if(first != '-' && first != '+' && !Character.isDigit(first)) {
+            return 0;
+        }
+
+        int result = 0;
+        int limit = Integer.MAX_VALUE / 10;
+        for(int i = 0 ; i < s.length(); i++) {
+            char c = s.charAt(i);
+            int val = c - '0';
+            if(Character.isDigit(c)) {
+                if(sign =='+') {
+                    if(result > limit) {
+                        return Integer.MAX_VALUE;
+                    } else if(result == limit && val > 7) {
+                         return Integer.MAX_VALUE;
+                    }
+                } else {
+                     if(result > limit) {
+                        return Integer.MIN_VALUE;
+                    } else if(result == limit && val > 8) {
+                         return Integer.MIN_VALUE;
+                    }
+                }
+                result = result * 10 + val;
+            } else if(i != 0) {
+                break;
+            }
+        }
+        if(sign == '-') {
+            return -result;
+        }
+        return result;
+    }
+
 }
-Example 1:
 
-Input:
-[['o', 'o', 'o'],
- ['o', 'o', 'o'],
- ['x', 'o', 'o']]
+## Problem2: Reorder Log files data (https://leetcode.com/problems/reorder-data-in-log-files/)
 
-Output: [2, 0]
-Example 2:
+//Time Complexity = O(NklogN)
+// Space Complexity = O(1)
 
-Input:
-[['o', 'o', 'o', 'o', 'o'],
- ['o', 'o', 'o', 'o', 'o'],
- ['o', 'o', 'o', 'o', 'o'],
- ['o', 'o', 'o', 'o', 'o'],
- ['o', 'o', 'o', 'x', 'o'],
- ['o', 'o', 'o', 'o', 'o']]
+class Solution {
+public String[] reorderLogFiles(String[] logs) {
+if(logs == null || logs.length == 0) {
+return new String[0];
+}
 
-Output: [4, 3]
-Assumptions:
+        Arrays.sort(logs, (l1,l2) -> {
+            String[] str1 = l1.split(" ", 2);
+            String[] str2 = l2.split(" ", 2);
 
-There is always one and only one object.
-If it's not the target object the 1st call would always give HOTTER as result, ortherwise EXACT.
+            boolean isDigitlog1 = Character.isDigit(str1[1].charAt(0));
+            boolean isDigitlog2 = Character.isDigit(str2[1].charAt(0));
 
+            if(!isDigitlog1 && !isDigitlog2) {
+                int comp = str1[1].compareTo(str2[1]);
+                if(comp == 0) {
+                    return str1[0].compareTo(str2[0]);
+                }
+                return comp;
+            } else if(isDigitlog1 && !isDigitlog2) {
+                return 1;
+            } else if(!isDigitlog1 && isDigitlog2) {
+                return -1;
+            } else {
+                return 0;
+            }
 
-## Problem2: Atoi (https://leetcode.com/problems/string-to-integer-atoi/)
+        });
+        return logs;
+    }
 
-
-             
-## Problem3: Reorder Log files data (https://leetcode.com/problems/reorder-data-in-log-files/)
-
-
+}
