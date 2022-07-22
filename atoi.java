@@ -12,15 +12,7 @@ class Solution {
         if (s == null || s.length() == 0)
             return 0;
         
-        // Check first character for sign
-        char first = s.charAt(0);
         char sign = '+';
-        
-        if (!(first == '+' || first == '-') && !Character.isDigit(first))
-            return 0;
-        
-        if (first == '-')
-            sign = '-';
         
         // integer limit on positive side is 2,147,483,647 and on negative side is -2,147,483,648.
         // We will set our limit to 2,147,483,64 to prevent overflow.
@@ -33,7 +25,6 @@ class Solution {
             if (Character.isDigit(c)) {
                 if (sign == '+') {
                     // For numbers greater than limit, return MAX_VALUE
-                   
                     if (result > limit) return Integer.MAX_VALUE;
                     if (result == limit) {
                         if (c - '0' > 7) return Integer.MAX_VALUE;
@@ -46,7 +37,12 @@ class Solution {
                     }
                 }
                 result = result * 10 + c - '0';
-            } else if (i != 0 && !Character.isDigit(c)) {
+            } else if (c == '+' || c == '-') {
+                if (i == 0)
+                    sign = c;
+                else
+                    break;
+            } else if (!Character.isDigit(c)) {
                 break;
             }
         }
