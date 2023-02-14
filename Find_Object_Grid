@@ -49,7 +49,7 @@ class HelloWorld {
                 int r = mid;
                 int c = 0;
                 
-                String value = getResponse(matrix[r][c]);
+                Response value = getResponse(matrix[r][c]);
                 if(value.equals("HOTTER")){
                     low = mid;
                 }else{
@@ -69,7 +69,7 @@ class HelloWorld {
               
                 int c = mid;
                 
-                String value = getResponse(matrix[row][c]);
+                Response value = getResponse(matrix[row][c]);
                 if(value.equals("EXACT")){
                    return mid
                 }else if(value.equals("HOTTER"))
