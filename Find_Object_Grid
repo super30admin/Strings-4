@@ -1,0 +1,84 @@
+//TimeComplexity.  O(log(m*n)
+//SpaceComplexity. O(1)
+
+
+
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+
+
+//     enum Response {
+// 	HOTTER,  // Moving closer to target
+// 	COLDER,  // Moving farther from target
+// 	SAME,    // Same distance from the target as your previous guess
+// 	EXACT;   // Reached destination
+// }
+
+// // Throws an error if 'row' or 'col' is out of bounds
+// public Response getResponse(int row, int col) {
+// 	// black box
+// }
+
+class HelloWorld {
+    public static void main(String[] args) {
+        char[][] matrix = {[['o', 'o', 'o'], ['o', 'o', 'o'], ['x', 'o', 'o']]};
+        Solution solution = new Solution;
+        System.out.println(solution.findObject(matrix));
+    }
+    
+
+    
+    public static class Solution{
+        public static int[] findObject(char[][] matrix){
+            
+            int low = 0;
+            int highRow = matrix.length;
+            int highCol = matrix[0].length;
+            
+            int row = findRow(matrix,low,highRow);
+             int col = findCol(matrix,low,highCol,row);
+            
+            return new int[]{row,col};
+        }
+        
+         public static int findRow(char[][] matrix, int low, int high){
+        
+            while(low < high){
+                int mid = low + (high-low)/2;
+                
+                int r = mid;
+                int c = 0;
+                
+                String value = getResponse(matrix[r][c]);
+                if(value.equals("HOTTER")){
+                    low = mid;
+                }else{
+                    high = mid-1;
+                }
+                
+                
+            }
+            return low;
+        }
+        
+        public static int findCol(char[][] matrix, int low, int high,int row){
+        
+            while(low < high){
+                int mid = low + (high-low)/2;
+                
+              
+                int c = mid;
+                
+                String value = getResponse(matrix[row][c]);
+                if(value.equals("EXACT")){
+                   return mid
+                }else if(value.equals("HOTTER"))
+                    low = mid+1;
+                }else{
+                    high = mid-1
+                }
+               return low; 
+                
+            }
+        }
+    }
