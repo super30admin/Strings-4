@@ -1,6 +1,6 @@
 # Strings-4
 
-## Problem1: Find object in a grid
+## Problem1: Find object in a grid (https://leetcode.com/discuss/interview-question/390551/google-onsite-find-object-in-a-grid)
 
 Given a char grid (o represents an empty cell and x represents a target object) and an API getResponse which would give you a response w.r.t. to your previous position. Write a program to find the object. You can move to any position.
 
