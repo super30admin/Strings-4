@@ -1,6 +1,8 @@
 import java.util.*;
 
 public class WordBreak {
+    // TC : O(n ^ 3)
+    // SC : O(n)
     public boolean wordBreak(String s, List<String> wordDict) {
         Set<String> set = new HashSet<>(wordDict);
         Queue<Integer> queue = new LinkedList<>();
