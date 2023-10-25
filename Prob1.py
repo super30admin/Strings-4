@@ -1,5 +1,6 @@
 class Solution:
     def myAtoi(self, s: str) -> int:
+        #Method 1 - Iterate through the chars - TC - O(n)
         s=s.strip()
         isneg=False
         res=0
