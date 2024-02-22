@@ -12,8 +12,6 @@ string get_identifier(string& sentence){
     return identifier;
 }
 
-
-
 class Compare{
     public:
     bool operator()(string& below,string& above){
