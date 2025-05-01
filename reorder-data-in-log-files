@@ -1,0 +1,34 @@
+// Time Complexity :O(nlogn)
+// Space Complexity :O(1)
+// Did this code successfully run on Leetcode :yes
+// Any problem you faced while coding this :no
+// Your code here along with comments explaining your approach:custom sorting by satisfying give conditions
+class Solution {
+    public String[] reorderLogFiles(String[] logs) {
+        Arrays.sort(logs, (a, b) -> {
+            String[] aArray = a.split(" ", 2);//0 index is identifier an d1 is content 
+            String[] bArray = b.split(" ", 2);
+            //if a is let lock and b is digit lock then let lock should be first
+            if (Character.isLetter(aArray[1].charAt(0)) && !Character.isLetter(bArray[1].charAt(0))) {
+                return -1;
+                //if a is digi lock and b is let lock then b should be first 
+            } else if (!Character.isLetter(aArray[1].charAt(0)) && Character.isLetter(bArray[1].charAt(0))) {
+                return 1;
+                ///if both are digi locks no sorting needed
+            } else if (!Character.isLetter(aArray[1].charAt(0)) && !Character.isLetter(bArray[1].charAt(0))) {
+                return 0;
+            } else {
+                //if both are let locks sort them lexicographically as per content
+                int comp = aArray[1].compareTo(bArray[1]);
+                if (comp == 0) {//if content of let locks are same then lexicographicality of identifer
+                    return aArray[0].compareTo(bArray[0]);
+                } else {
+                    return comp;
+                }
+            }
+
+        });
+
+        return logs;
+    }
+}
