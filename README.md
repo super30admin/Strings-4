@@ -40,7 +40,7 @@ There is always one and only one object.
 If it's not the target object the 1st call would always give HOTTER as result, ortherwise EXACT.
 
 
-## Problem2: Atoi (https://leetcode.com/problems/string-to-integer-atoi/)
+## Problem2: StringToInteger (https://leetcode.com/problems/string-to-integer-atoi/)
 
 
              
